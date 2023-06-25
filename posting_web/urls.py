@@ -5,7 +5,7 @@ app_name = 'posting_web'
 
 urlpatterns = [
 
-    path('home/', views.home, name='home'),
+    path('', views.home, name='home'),
     path('products/', views.ProductListView.as_view(), name='product_list'),
     path('products/create/', views.ProductCreateView.as_view(), name='product_create'),
     path('products/<int:pk>/', views.ProductDetailView.as_view(), name='product_detail'),
