@@ -1,8 +1,10 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
+
+from .forms import ProductForm
 from .models import Product, Rating, Comment
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Item
 
 
@@ -27,14 +29,13 @@ class ProductDetailView(DetailView):
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     template_name = 'product_create.html'
-    fields = ['title', 'description']
-    success_url = reverse_lazy('posting:product_list')
+    form_class = ProductForm
 
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     template_name = 'product_form.html'
-    fields = ['title', 'description']
+    form_class = ProductForm
 
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
@@ -50,7 +51,7 @@ class RatingCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.product = Product.objects.get(pk=self.kwargs['pk'])
+        form.instance.product = get_object_or_404(Product, pk=self.kwargs['pk'])
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -64,7 +65,7 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.product = Product.objects.get(pk=self.kwargs['pk'])
+        form.instance.product = get_object_or_404(Product, pk=self.kwargs['pk'])
         return super().form_valid(form)
 
     def get_success_url(self):

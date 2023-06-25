@@ -4,11 +4,11 @@
 <div class="row">
   <div class="col-md-8">
     <h1>Список товаров</h1>
-    {% for Product in Products %}
+    {% for product in products %}
     <div class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title">{{ Product.title }}</h5>
-        <p class="card-text">{{ Product.description }}</p>
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">{{ product.description }}</p>
         <a href="{% url 'posting:product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
       </div>
     </div>
@@ -17,6 +17,12 @@
   <div class="col-md-4">
     <h2>Фильтр товаров</h2>
 
+    <h3>Добавить товар</h3>
+    <form method="POST" action="{% url 'posting:product_create' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
   </div>
 </div>
 {% endblock %}
