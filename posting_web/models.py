@@ -24,6 +24,9 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        db_table = 'posting_web_product'
+
 
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
