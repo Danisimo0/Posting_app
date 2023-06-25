@@ -26,7 +26,7 @@ class ProductDetailView(DetailView):
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
-    template_name = 'product_form.html'
+    template_name = 'product_create.html'
     fields = ['title', 'description']
     success_url = reverse_lazy('posting:product_list')
 
