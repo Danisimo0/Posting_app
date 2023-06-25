@@ -1,8 +1,6 @@
 from django.urls import path
 from posting_web import views
 
-app_name = 'posting_web'
-
 urlpatterns = [
 
     path('', views.home, name='home'),
