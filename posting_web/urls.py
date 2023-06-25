@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from posting_web import views
 
 app_name = 'posting_web'
 
