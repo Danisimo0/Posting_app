@@ -4,11 +4,11 @@
 <div class="row">
   <div class="col-md-8">
     <h1>Список товаров</h1>
-    {% for product in products %}
+    {% for Product in Products %}
     <div class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title">{{ product.title }}</h5>
-        <p class="card-text">{{ product.description }}</p>
+        <h5 class="card-title">{{ Product.title }}</h5>
+        <p class="card-text">{{ Product.description }}</p>
         <a href="{% url 'posting:product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
       </div>
     </div>
