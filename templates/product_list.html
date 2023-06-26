@@ -9,7 +9,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ product.title }}</h5>
         <p class="card-text">{{ product.description }}</p>
-        <a href="{% url 'posting:product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
+        <a href="{% url 'posting_web:product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
       </div>
     </div>
     {% endfor %}
@@ -18,7 +18,7 @@
     <h2>Фильтр товаров</h2>
 
     <h3>Добавить товар</h3>
-    <form method="POST" action="{% url 'posting:product_create' %}">
+    <form method="POST" action="{% url 'posting_web:product_create' %}">
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit" class="btn btn-primary">Добавить</button>
